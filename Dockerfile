@@ -50,4 +50,5 @@ RUN dpkg -i /opt/bisq-install/$BISQ_DEBFILE; \
 RUN mkdir -p /config/.config/openbox; \
     ln -s /opt/bisq/bin/Bisq /usr/local/bin/bisq; \
     echo "bisq" > /config/.config/openbox/autostart; \
-    cp /defaults/rc.xml /config/.config/openbox/
+    cp /defaults/rc.xml /config/.config/openbox/rc.xml
+

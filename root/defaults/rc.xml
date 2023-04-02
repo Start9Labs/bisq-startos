@@ -792,9 +792,5 @@
 
   # end of the example
 -->
-<application name="Bisq">
-  <fullscreen>yes</fullscreen>
-</application>
-
   </applications>
 </openbox_config>

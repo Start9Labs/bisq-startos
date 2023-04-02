@@ -26,7 +26,7 @@ main:
   args: []
   mounts:
     main: /root/data
-    bisq: /config
+    bisq: /config/.local/share/Bisq
 health-checks:
   web-ui:
     name: Bisq Interface
@@ -74,11 +74,11 @@ backup:
       - create
       - /mnt/backup
       - /root/data
-      - /config
+      - /config/.local/share/Bisq
     mounts:
       BACKUP: /mnt/backup
       main: /root/data
-      bisq: /config
+      bisq: /config/.local/share/Bisq
   restore:
     type: docker
     image: compat
@@ -92,7 +92,7 @@ backup:
     mounts:
       BACKUP: /mnt/backup
       main: /root/data
-      bisq: /config
+      bisq: /config/.local/share/Bisq
 migrations:
   from:
     "*":
