@@ -11,6 +11,20 @@ export const getConfig = compat.getConfig({
     "pattern-description": "Must not contain newline or quote characters.",
     "masked": false,
     "copyable": true
+  },
+  "auto_login": {
+    "name": "Automatic Login",
+    "description": "Enabling this feature will automatically log you in to Bisq without requiring you to enter your password.",
+    "type": "boolean",
+    "default": true
+  },
+  "password": {
+    "type": "string",
+    "name": "Password",
+    "description": "The password for logging into your Bisq as **abc** user",
+    "nullable": false,
+    "masked": true,
+    "default": "abc"
   }
 })
 

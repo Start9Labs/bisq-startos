@@ -1,8 +1,8 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.1.9
-release-notes: "Bisq for emabssyOS 0.3.4"
+version: 1.9.9
+release-notes: "Bisq for Embassy Pro"
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-wrapper"
 upstream-repo: "https://github.com/bisq-network/bisq"
@@ -26,6 +26,7 @@ main:
   args: []
   mounts:
     main: /root/data
+    bisq: /config
 health-checks:
   web-ui:
     name: Bisq Interface
@@ -40,6 +41,8 @@ properties: ~
 volumes:
   main:
     type: data
+  bisq:
+    type: data
 interfaces:
   main:
     name: User Interface
@@ -52,6 +55,9 @@ interfaces:
       443:
         ssl: true
         internal: 3000
+      3389:
+        ssl: false
+        internal: 3389
     ui: true
     protocols:
       - tcp
@@ -68,9 +74,11 @@ backup:
       - create
       - /mnt/backup
       - /root/data
+      - /config
     mounts:
       BACKUP: /mnt/backup
       main: /root/data
+      bisq: /config
   restore:
     type: docker
     image: compat
@@ -84,6 +92,7 @@ backup:
     mounts:
       BACKUP: /mnt/backup
       main: /root/data
+      bisq: /config
 migrations:
   from:
     "*":
