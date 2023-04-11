@@ -1,6 +1,6 @@
 # Wrapper for bisq
 
-Bisq is a simple, minimal project that serves as a template for creating a service that runs on embassyOS. This repository creates the `s9pk` package that is installed to run `bisq` on [embassyOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
+Bisq is a decentralized bitcoin exchange network that enables secure, private and censorship-resistant exchange of bitcoin for national currencies and other cryptocurrencies over the internet. This repository creates the `s9pk` package that is installed to run `bisq` on [embassyOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
 
 ## Dependencies
 
@@ -64,7 +64,6 @@ Clone the project locally:
 ```
 git clone https://github.com/Start9Labs/bisq-wrapper.git
 cd bisq-wrapper
-git submodule update --init --recursive
 ```
 
 ## Building

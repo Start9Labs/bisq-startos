@@ -18,6 +18,12 @@ else
 	embassy-cli package install $(PKG_ID).s9pk
 endif
 
+arm:
+	ARCH=aarch64 $(MAKE)
+
+x86:
+	ARCH=x86_64 $(MAKE)
+
 clean:
 	rm -rf docker-images
 	rm -f image.tar

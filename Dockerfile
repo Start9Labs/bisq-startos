@@ -1,5 +1,3 @@
-#FROM fflo/bisq-on-docker:1.9.9
-#FROM lscr.io/linuxserver/webtop:ubuntu-i3
 FROM ghcr.io/linuxserver/baseimage-rdesktop-web:jammy
 
 RUN apt update && \
@@ -51,4 +49,3 @@ RUN mkdir -p /config/.config/openbox; \
     ln -s /opt/bisq/bin/Bisq /usr/local/bin/bisq; \
     echo "bisq" > /config/.config/openbox/autostart; \
     cp /defaults/rc.xml /config/.config/openbox/rc.xml
-

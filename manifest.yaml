@@ -8,13 +8,12 @@ wrapper-repo: "https://github.com/Start9Labs/bisq-wrapper"
 upstream-repo: "https://github.com/bisq-network/bisq"
 support-site: "https://github.com/bisq-network/bisq/issues"
 marketing-site: "https://bisq.network/"
-#donation-url: "https://bisq.network/"
 build: ["make"]
 description:
-  short: Bisq - A Linux Desktop Environment In Your Browser
+  short: Buy and sell bitcoin for fiat (or other cryptocurrencies) privately and securely. 
   long: |
-    Bisq is an innovative Linux desktop environment that allows users to access a complete Linux desktop directly from their web browser.
-    With Bisq, you no longer need to install or configure any software on your local machine to use Linux.
+    Bisq is a decentralized bitcoin exchange network that enables secure, private and censorship-resistant exchange of bitcoin for national currencies and other cryptocurrencies over the internet.
+    The Bisq application forms a peer-to-peer network by discovering, connecting to, and working with one another to implement the Bisq trading protocol.
 assets:
   license: LICENSE
   icon: icon.png
