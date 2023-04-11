@@ -21,7 +21,7 @@ export const getConfig = compat.getConfig({
   "password": {
     "type": "string",
     "name": "Password",
-    "description": "The password for logging into your Bisq as **abc** user",
+    "description": "The password for logging into your Bisq as abc user",
     "nullable": false,
     "masked": true,
     "default": "abc"
