@@ -1,20 +1,19 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.1.9
-release-notes: "Bisq for emabssyOS 0.3.4"
+version: 1.9.9
+release-notes: "Bisq for Embassy Pro"
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-wrapper"
 upstream-repo: "https://github.com/bisq-network/bisq"
 support-site: "https://github.com/bisq-network/bisq/issues"
 marketing-site: "https://bisq.network/"
-#donation-url: "https://bisq.network/"
 build: ["make"]
 description:
-  short: Bisq - A Linux Desktop Environment In Your Browser
+  short: Buy and sell bitcoin for fiat (or other cryptocurrencies) privately and securely. 
   long: |
-    Bisq is an innovative Linux desktop environment that allows users to access a complete Linux desktop directly from their web browser.
-    With Bisq, you no longer need to install or configure any software on your local machine to use Linux.
+    Bisq is a decentralized bitcoin exchange network that enables secure, private and censorship-resistant exchange of bitcoin for national currencies and other cryptocurrencies over the internet.
+    The Bisq application forms a peer-to-peer network by discovering, connecting to, and working with one another to implement the Bisq trading protocol.
 assets:
   license: LICENSE
   icon: icon.png
@@ -26,6 +25,7 @@ main:
   args: []
   mounts:
     main: /root/data
+    bisq: /config/.local/share/Bisq
 health-checks:
   web-ui:
     name: Bisq Interface
@@ -40,6 +40,8 @@ properties: ~
 volumes:
   main:
     type: data
+  bisq:
+    type: data
 interfaces:
   main:
     name: User Interface
@@ -52,6 +54,9 @@ interfaces:
       443:
         ssl: true
         internal: 3000
+      3389:
+        ssl: false
+        internal: 3389
     ui: true
     protocols:
       - tcp
@@ -68,9 +73,11 @@ backup:
       - create
       - /mnt/backup
       - /root/data
+      - /config/.local/share/Bisq
     mounts:
       BACKUP: /mnt/backup
       main: /root/data
+      bisq: /config/.local/share/Bisq
   restore:
     type: docker
     image: compat
@@ -84,6 +91,7 @@ backup:
     mounts:
       BACKUP: /mnt/backup
       main: /root/data
+      bisq: /config/.local/share/Bisq
 migrations:
   from:
     "*":
