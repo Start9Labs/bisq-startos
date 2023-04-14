@@ -7,7 +7,7 @@ license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-wrapper"
 upstream-repo: "https://github.com/bisq-network/bisq"
 support-site: "https://github.com/bisq-network/bisq/issues"
-marketing-site: "https://bisq.network/"
+marketing-site: "https://bisq.network"
 build: ["make"]
 description:
   short: Buy and sell bitcoin for fiat (or other cryptocurrencies) privately and securely. 
@@ -61,7 +61,18 @@ interfaces:
     protocols:
       - tcp
       - http
-dependencies: {}
+dependencies:
+  bitcoind:
+    version: ">=0.21.1.2 <26.0.0"
+    requirement:
+      type: "opt-out"
+      how: Internal bitcoind is used by default. Alternatively, Bisq's default list of nodes can be used.
+    description: Used to subscribe to new block events from a full archival node
+    config:
+      check:
+        type: script
+      auto-configure:
+        type: script
 backup:
   create:
     type: docker

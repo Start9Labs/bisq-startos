@@ -27,4 +27,3 @@ export const getConfig = compat.getConfig({
     "default": "abc"
   }
 })
-
