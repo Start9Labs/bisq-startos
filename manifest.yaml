@@ -36,7 +36,8 @@ config:
     type: script
   set:
     type: script
-properties: ~
+properties:
+  type: script
 volumes:
   main:
     type: data
@@ -67,7 +68,7 @@ dependencies:
     requirement:
       type: "opt-out"
       how: Internal bitcoind is used by default. Alternatively, Bisq's default list of nodes can be used.
-    description: Used to subscribe to new block events from a full archival node
+    description: Used to subscribe to new block events from a full archival node.
     config:
       check:
         type: script
