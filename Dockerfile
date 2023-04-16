@@ -17,8 +17,6 @@ COPY /root /
 #wget -q -P /tmp https://github.com/bisq-network/bisq/releases/download/v1.9.9/jar-lib-for-raspberry-pi-1.9.9.zip
 
 RUN echo; echo "Bisq for embassyOS is starting ..." > /etc/s6-overlay/s6-rc.d/init-adduser/branding; sed -i '/run_branding() {/,/}/d' /docker-mods
-ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
-RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
 
 WORKDIR /opt
 
@@ -49,3 +47,6 @@ RUN mkdir -p /config/.config/openbox; \
     ln -s /opt/bisq/bin/Bisq /usr/local/bin/bisq; \
     echo "bisq" > /config/.config/openbox/autostart; \
     cp /defaults/rc.xml /config/.config/openbox/rc.xml
+
+ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
+RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
