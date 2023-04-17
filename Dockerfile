@@ -47,6 +47,6 @@ RUN mkdir -p /config/.config/openbox; \
     ln -s /opt/bisq/bin/Bisq /usr/local/bin/bisq; \
     echo "bisq" > /config/.config/openbox/autostart; \
     cp /defaults/rc.xml /config/.config/openbox/rc.xml
-
-ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
-RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
+RUN sed -i '2iecho\necho "Starting Bisq ..."\necho\nexport PUID=1000\nexport PGID=1000\nexport TZ=Etc/UTC\nexport TITLE="$(yq e .title /root/data/start9/config.yaml)"\nexport AUTO_LOGIN="$(yq e .auto_login /root/data/start9/config.yaml)"\necho "abc:$(yq e .password /root/data/start9/config.yaml)" | chpasswd\nprintf "%s\n" "useTorForBtc=false" "btcNodes=bitcoind.embassy:8333" "bannedSeedNodes=" "bannedBtcNodes=165.227.34.198:8333,btc1.dnsalias.net:8333" "bannedPriceRelayNodes=" > /config/.local/share/Bisq/bisq.properties' /init
+#ADD ./docker_entrypoint.sh /usr/local/bin/docker_entrypoint.sh
+#RUN chmod a+x /usr/local/bin/docker_entrypoint.sh
