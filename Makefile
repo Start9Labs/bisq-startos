@@ -19,9 +19,11 @@ else
 endif
 
 arm:
+	@rm -f docker-images/x86_64.tar
 	ARCH=aarch64 $(MAKE)
 
 x86:
+	@rm -f docker-images/aarch64.tar
 	ARCH=x86_64 $(MAKE)
 
 clean:
