@@ -698,6 +698,12 @@
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
   <applications>
+
+  <application name="bisq.desktop.app.BisqApp"
+              class="bisq.desktop.app.BisqApp">
+  <fullscreen>yes</fullscreen>
+  </application>
+    
     <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.
