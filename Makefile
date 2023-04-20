@@ -19,14 +19,15 @@ else
 endif
 
 arm:
+	@rm -f docker-images/x86_64.tar
 	ARCH=aarch64 $(MAKE)
 
 x86:
+	@rm -f docker-images/aarch64.tar
 	ARCH=x86_64 $(MAKE)
 
 clean:
 	rm -rf docker-images
-	rm -f image.tar
 	rm -f $(PKG_ID).s9pk
 	rm -f scripts/*.js
 

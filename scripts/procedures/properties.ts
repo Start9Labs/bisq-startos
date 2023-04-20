@@ -1,3 +1,3 @@
-import { compat, types as T } from "../deps.ts";
+import { compat } from "../deps.ts";
 
-export const properties: T.ExpectedExports.properties = compat.properties;
+export const properties = compat.properties
