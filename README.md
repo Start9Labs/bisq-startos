@@ -1,6 +1,6 @@
 # Wrapper for bisq
 
-Bisq is a decentralized bitcoin exchange network that enables secure, private and censorship-resistant exchange of bitcoin for national currencies and other cryptocurrencies over the internet. This repository creates the `s9pk` package that is installed to run `bisq` on [embassyOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
+Bisq is a decentralized bitcoin exchange network that enables secure, private and censorship-resistant exchange of bitcoin for national currencies and other cryptocurrencies over the internet. This repository creates the `s9pk` package that is installed to run `bisq` on [StartOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
 
 ## Dependencies
 
@@ -14,7 +14,7 @@ Install the system dependencies below to build this project by following the ins
 - [embassy-sdk](https://github.com/Start9Labs/embassy-os/tree/master/backend)
 
 ## Build environment
-Prepare your embassyOS build environment. In this example we are using Ubuntu 20.04.
+Prepare your StartOS build environment. In this example we are using Ubuntu 20.04.
 1. Install docker
 ```
 curl -fsSL https://get.docker.com -o- | bash
@@ -86,7 +86,7 @@ or
 make ARCH=aarch64
 ```
 
-## Installing (on embassyOS)
+## Installing (on StartOS)
 
 Run the following commands to determine successful install:
 > :information_source: Change embassy-server-name.local to your Embassy address
