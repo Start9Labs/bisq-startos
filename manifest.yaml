@@ -1,7 +1,7 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.9.9
+version: 1.9.10
 release-notes: "Bisq for Embassy Pro"
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-wrapper"
