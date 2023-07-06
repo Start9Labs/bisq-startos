@@ -13,7 +13,7 @@ verify: $(PKG_ID).s9pk
 
 install:
 ifeq (,$(wildcard ~/.embassy/config.yaml))
-	@echo; echo "You must define \"host: http://embassy-server-name.local\" in ~/.embassy/config.yaml config file first"; echo
+	@echo; echo "You must define \"host: http://server-name.local\" in ~/.embassy/config.yaml config file first"; echo
 else
 	embassy-cli package install $(PKG_ID).s9pk
 endif
