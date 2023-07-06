@@ -2,7 +2,7 @@
 id: bisq 
 title: "Bisq"
 version: 1.9.10
-release-notes: "Bisq for StartOS x86_64"
+release-notes: "We are thrilled to announce the initial release of Bisq version 1.9.10 for StartOS x86_64!"
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-wrapper"
 upstream-repo: "https://github.com/bisq-network/bisq"
