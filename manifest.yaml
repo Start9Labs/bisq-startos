@@ -36,8 +36,8 @@ config:
     type: script
   set:
     type: script
-properties:
-  type: script
+#properties: {}
+#  type: script
 volumes:
   main:
     type: data
