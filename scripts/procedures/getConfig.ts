@@ -14,7 +14,7 @@ export const getConfig = compat.getConfig({
   },
   "auto_login": {
     "name": "Automatic Login",
-    "description": "Enabling this feature will automatically log you in to Bisq without requiring you to enter your password.",
+    "description": "⚠️ Enabling Automatic Login provides convenient access to Bisq via your secure device. Be aware of the security implications before proceeding. Ensure you have taken necessary measures to protect your Bisq v3 onion address and device security.",
     "type": "boolean",
     "default": true
   },

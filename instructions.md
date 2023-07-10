@@ -33,8 +33,8 @@ Using an RDP client is the preferred method for mobile users as it offers a more
 To run Bisq using an RDP client, follow these steps:
 
 1. Ensure that your RDP client can handle SOCKS5 proxy settings. We recommend using [Parallels RAS](https://www.parallels.com/products/ras/download/client/) for desktop and **RD Client** for mobile as a clients for accessing the Bisq app through Tor.
-2. Connect to the .onion address provided by Bisq > Interfaces using Parallels RAS.
-3. Log in with the username and password you set up during the configuration process.
+2. Connect to the .onion address provided by Bisq > Interfaces using RDP client.
+3. Log in with the `abc` as username and password you set up during the configuration process.
 
 ## Using Bisq
 
