@@ -62,7 +62,7 @@ interfaces:
       - http
 dependencies:
   bitcoind:
-    version: ">=0.21.1.2 <26.0.0"
+    version: ">=0.21.1.2 <27.0.0"
     requirement:
       type: "opt-out"
       how: Internal bitcoind is used by default. Alternatively, Bisq's default list of nodes can be used.
