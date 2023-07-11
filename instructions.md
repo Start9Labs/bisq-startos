@@ -1,34 +1,36 @@
 # Instructions for Bisq
 
-Welcome to Bisq, a decentralized exchange that allows you to trade cryptocurrencies in a true sovereign way. Here's how to get started:
+Welcome to Bisq, a decentralized exchange that allows you to trade cryptocurrencies in a true sovereign way.
 
-Configure Bisq by clicking on the **"Config"** button and saving default values or making any necessary changes to the **Bisq Title**, **Automatic Login**, and **Password** settings. Then click on the **"Save"** button.
+## Why Run Bisq on a Server?
 
-**Note:** The default username is **abc** and the default password is **cba**.
+Bisq is a client application, usually run on a laptop or desktop. In order for trades to complete, however, it is necessary for your computer to be online. This means if you enter a trade on your laptop, you cannot close your laptop until the trade completes; otherwise it might fail.
 
-Once Bisq is configured, you are ready to start the service.
+*By running Bisq on a server, which is online 24/7, you can enter a trade and go about your life!*
 
-## Running Bisq from a web browser:
+## Username and Password
 
-Running Bisq from a web browser is the preferred method as it can be used on LAN and Tor on any Tor-enabled browser.
+The default username for Bisq is `abc`, and you have the option to change the password in config at any time.
 
-1. Launch the Bisq App by clicking on the **"LAUNCH UI"** button. This will open Bisq in your default web browser.
-2. Depending on your configuration, you may be logged in automatically or prompted for the username and password.
+## Using Bisq from a web browser (laptop/desktop only):
 
-**Note:** There is a black dot on the middle left part of the screen that is there for your convenience and has a Copy & Paste field, On Screen Keyboard, File Manager, and Fullscreen buttons.
+1. Launch the Bisq App by clicking on the **LAUNCH UI** button within Bisq. This will open Bisq in your default web browser.
+2. After launching the Bisq App, you will be prompted to enter the `abc` username and associated password.
 
-## Running Bisq using an RDP client:
+**Note:** Within the Bisq interface, you will find a black dot on the middle left part of the screen. This dot provides convenient features such as a Copy & Paste field, On-Screen Keyboard, File Manager, and Fullscreen buttons. **(During the login screen, the option to copy and paste is not available)**
 
-Please note that at this time, using an RDP client can only be used for Tor connections.
+## Using Bisq from an RDP client:
 
-1. Ensure that your RDP client can handle SOCKS5 proxy settings. We recommend [Parallels RAS](https://www.parallels.com/products/ras/download/client/) as a client for accessing the Bisq app through Tor.
-2. Connect to the .onion address provided by the Bisq > Interfaces through Parallels RAS.
-3. Log in with the username and password you set up during the configuration process.
+1. Ensure that your Remote Desktop Protocol (RDP) client can handle SOCKS5 proxy settings. We recommend using [Parallels RAS](https://www.parallels.com/products/ras/download/client/) for desktop and **RD Client** for mobile as clients for accessing the Bisq app through Tor.
+2. Connect to the .onion address provided by Bisq > Interfaces using an RDP client.
+3. Log in with the `abc` username and the associated password.
 
-## Using Bisq
+## Important notes
 
-The first time Bisq is being used, you will be prompted to read and agree to the user agreement. It may take a few moments to open as it connects to the Tor network and syncs with Bisq's peer-to-peer trading network. Please be patient while the synchronization process completes.
- 
+The first time you use Bisq, you will be prompted to read and agree to the user agreement. Please take the time to review it.
+
+It may take a few moments for Bisq to open as it connects to the Tor network and syncs with Bisq's peer-to-peer trading network. Please be patient while the synchronization process completes.
+
 Once Bisq is fully synced, you are all set to start trading! If you have any questions or need help, you can refer to the Bisq documentation at https://bisq.wiki/.
 
 Happy and safe trading!

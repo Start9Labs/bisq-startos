@@ -63,8 +63,8 @@ Now you are ready to build the `bisq` package!
 Clone the project locally:
 
 ```
-git clone https://github.com/Start9Labs/bisq-wrapper.git
-cd bisq-wrapper
+git clone https://github.com/Start9Labs/bisq-startos.git
+cd bisq-startos
 ```
 
 ## Building

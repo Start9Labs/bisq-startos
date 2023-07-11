@@ -60,13 +60,5 @@ export PUID=1000\n\
 export PGID=1000\n\
 export TZ=Etc/UTC\n\
 export TITLE="$(yq e .title /root/data/start9/config.yaml)"\n\
-export CHECK_LOGIN="$(yq e .auto_login /root/data/start9/config.yaml)"\n\
-if test "$CHECK_LOGIN" = "true"; then\n\
-  sed -i 's/^username=.*/username='abc'/g' /etc/xrdp/xrdp.ini\n\
-  sed -i 's/^password=.*/password='"$(yq e .password /root/data/start9/config.yaml)"'/g' /etc/xrdp/xrdp.ini\n\
-  echo "Autologin is enabled."\n\
-else\n\
-  echo "Autologin is disabled."\n\
-  export AUTO_LOGIN=false\n\
-fi\n\
+export AUTO_LOGIN=false\n\
 printf "%s\n" "useTorForBtc=false" "btcNodes=bitcoind.embassy:8333" "bannedSeedNodes=" "bannedBtcNodes=165.227.34.198:8333,btc1.dnsalias.net:8333" "bannedPriceRelayNodes=" > /config/.local/share/Bisq/bisq.properties' /init

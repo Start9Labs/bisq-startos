@@ -4,7 +4,7 @@ title: "Bisq"
 version: 1.9.10
 release-notes: "We are thrilled to announce the initial release of Bisq version 1.9.10 for StartOS x86_64!"
 license: GPLv3
-wrapper-repo: "https://github.com/Start9Labs/bisq-wrapper"
+wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"
 support-site: "https://github.com/bisq-network/bisq/issues"
 marketing-site: "https://bisq.network"
@@ -36,8 +36,6 @@ config:
     type: script
   set:
     type: script
-properties:
-  type: script
 volumes:
   main:
     type: data
@@ -64,7 +62,7 @@ interfaces:
       - http
 dependencies:
   bitcoind:
-    version: ">=0.21.1.2 <26.0.0"
+    version: ">=0.21.1.2 <27.0.0"
     requirement:
       type: "opt-out"
       how: Internal bitcoind is used by default. Alternatively, Bisq's default list of nodes can be used.
