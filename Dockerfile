@@ -14,11 +14,11 @@ RUN apt update && \
 #dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 #    wget -O /usr/local/bin/yq "https://github.com/mikefarah/yq/releases/download/$YQ_VERSION/yq_linux_$dpkgArch"; \
 
-#wget -q -P /tmp https://github.com/bisq-network/bisq/releases/download/v1.9.10/jar-lib-for-raspberry-pi-1.9.10.zip
+#wget -q -P /tmp https://github.com/bisq-network/bisq/releases/download/v1.9.12/jar-lib-for-raspberry-pi-1.9.12.zip
 
 WORKDIR /opt
 
-ARG BISQ_VERSION=1.9.10
+ARG BISQ_VERSION=1.9.12
 ENV BISQ_DEBFILE Bisq-64bit-$BISQ_VERSION.deb
 ENV BISQ_DEB_URL https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE
 ENV BISQ_ASC_URL https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE.asc

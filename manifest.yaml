@@ -1,8 +1,9 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.9.10
-release-notes: "We are thrilled to announce the initial release of Bisq version 1.9.10 for StartOS x86_64!"
+version: 1.9.12
+release-notes: |
+  Now, you can clone existing offers while sharing its maker fee and security deposit. The cloned offer can have a different price, payment method, currency, and trigger price. In this new release, Bisq starts quicker because light nodes don't process Burningman accounting statistics anymore. Further, dispute agents can resend PeerOpenedDisputeMessages to non-resposive peers.
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"
