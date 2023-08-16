@@ -1,9 +1,9 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.9.12
+version: 1.9.12.1
 release-notes: |
-  Now, you can clone existing offers while sharing its maker fee and security deposit. The cloned offer can have a different price, payment method, currency, and trigger price. In this new release, Bisq starts quicker because light nodes don't process Burningman accounting statistics anymore. Further, dispute agents can resend PeerOpenedDisputeMessages to non-resposive peers.
+  Fix the backup creation and restoration process.
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"
@@ -42,6 +42,8 @@ volumes:
     type: data
   bisq:
     type: data
+  compat:
+    type: assets
 interfaces:
   main:
     name: User Interface
@@ -78,29 +80,28 @@ backup:
     type: docker
     image: compat
     system: true
-    entrypoint: compat
+    entrypoint: /mnt/assets/backup.sh
     args:
-      - duplicity
       - create
-      - /mnt/backup
       - /root/data
       - /config/.local/share/Bisq
     mounts:
       BACKUP: /mnt/backup
+      compat: /mnt/assets
       main: /root/data
       bisq: /config/.local/share/Bisq
   restore:
     type: docker
     image: compat
     system: true
-    entrypoint: compat
+    entrypoint: /mnt/assets/backup.sh
     args:
-      - duplicity
       - restore
-      - /mnt/backup
       - /root/data
+      - /config/.local/share/Bisq
     mounts:
       BACKUP: /mnt/backup
+      compat: /mnt/assets
       main: /root/data
       bisq: /config/.local/share/Bisq
 migrations:
