@@ -8,7 +8,7 @@ ASSET_PATHS := $(shell find ./assets/*)
 all: verify
 
 verify: $(PKG_ID).s9pk
-	@embassy-sdk verify s9pk $(PKG_ID).s9pk
+	@start-sdk verify s9pk $(PKG_ID).s9pk
 	@echo " Done!"
 	@echo "   Filesize: $(shell du -h $(PKG_ID).s9pk) is ready"
 
@@ -16,7 +16,7 @@ install:
 ifeq (,$(wildcard ~/.embassy/config.yaml))
 	@echo; echo "You must define \"host: http://server-name.local\" in ~/.embassy/config.yaml config file first"; echo
 else
-	embassy-cli package install $(PKG_ID).s9pk
+	start-cli package install $(PKG_ID).s9pk
 endif
 
 arm:
@@ -51,10 +51,10 @@ endif
 
 $(PKG_ID).s9pk: manifest.yaml instructions.md icon.png LICENSE scripts/embassy.js docker-images/aarch64.tar docker-images/x86_64.tar $(ASSET_PATHS)
 ifeq ($(ARCH),aarch64)
-	@echo "embassy-sdk: Preparing aarch64 package ..."
+	@echo "start-sdk: Preparing aarch64 package ..."
 else ifeq ($(ARCH),x86_64)
-	@echo "embassy-sdk: Preparing x86_64 package ..."
+	@echo "start-sdk: Preparing x86_64 package ..."
 else
-	@echo "embassy-sdk: Preparing Universal Package ..."
+	@echo "start-sdk: Preparing Universal Package ..."
 endif
-	@embassy-sdk pack
+	@start-sdk pack
