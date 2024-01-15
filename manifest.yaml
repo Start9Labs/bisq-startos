@@ -1,7 +1,7 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.9.12.1
+version: 1.9.14
 release-notes: |
   Fix the backup creation and restoration process.
 license: GPLv3
