@@ -28,6 +28,9 @@ main:
   mounts:
     main: /root/data
     bisq: /config/.local/share/Bisq
+hardware-requirements:
+  arch:
+    - x86_64
 health-checks:
   web-ui:
     name: Bisq Interface
