@@ -3,7 +3,8 @@ id: bisq
 title: "Bisq"
 version: 1.9.14
 release-notes: |
-  Fix the backup creation and restoration process.
+  - Upstream Bisq update to version 1.9.14
+  - Fix for black screen locking
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"
