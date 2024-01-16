@@ -5,6 +5,8 @@ version: 1.9.14
 release-notes: |
   - Upstream Bisq update to version 1.9.14
   - Fix for black screen locking
+  - Clarify browser tab title option in config
+  - Add username and password values to properties
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"
@@ -28,6 +30,7 @@ main:
   mounts:
     main: /root/data
     bisq: /config/.local/share/Bisq
+  gpu-acceleration: true
 hardware-requirements:
   arch:
     - x86_64
@@ -67,6 +70,8 @@ interfaces:
     protocols:
       - tcp
       - http
+properties:
+  type: script
 dependencies:
   bitcoind:
     version: ">=0.21.1.2 <27.0.0"
