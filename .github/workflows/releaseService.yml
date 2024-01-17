@@ -21,7 +21,7 @@ jobs:
         run: |
           git submodule update --init --recursive
           start-sdk init
-          make
+          make x86
 
       - name: Setting package ID and title from the manifest
         id: package

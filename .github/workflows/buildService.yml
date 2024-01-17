@@ -24,7 +24,7 @@ jobs:
         run: |
           git submodule update --init --recursive
           start-sdk init
-          make
+          make x86
           PACKAGE_ID=$(yq -oy ".id" manifest.*)
           echo "::set-output name=package_id::$PACKAGE_ID"
         shell: bash
