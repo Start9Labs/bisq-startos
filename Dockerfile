@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm-d42b46dd-ls51 AS buildstage
+FROM debian:stable-slim as builder
 RUN apt update && \
     apt install -y \
     curl \
