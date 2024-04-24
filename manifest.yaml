@@ -1,12 +1,10 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.9.14
+version: 1.9.15
 release-notes: |
-  - Upstream Bisq update to version 1.9.14
-  - Fix for black screen locking
-  - Clarify browser tab title option in config
-  - Add username and password values to properties
+  - Upstream Bisq update to version 1.9.15
+  - Update and pin docker base image to specific debian version
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"

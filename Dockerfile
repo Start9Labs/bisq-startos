@@ -1,4 +1,4 @@
-FROM debian:stable-slim as builder
+FROM ghcr.io/linuxserver/baseimage-kasmvnc:debianbookworm-d42b46dd-ls51 AS buildstage
 RUN apt update && \
     apt install -y \
     curl \
@@ -18,7 +18,7 @@ RUN apt update && \
 
 WORKDIR /opt
 
-ARG BISQ_VERSION=1.9.14
+ARG BISQ_VERSION=1.9.15
 ENV BISQ_DEBFILE Bisq-64bit-$BISQ_VERSION.deb
 ENV BISQ_DEB_URL https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE
 ENV BISQ_ASC_URL https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE.asc
