@@ -3,8 +3,7 @@ id: bisq
 title: "Bisq"
 version: 1.9.15
 release-notes: |
-  - Upstream Bisq update to version 1.9.15
-  - Update and pin docker base image to specific debian version
+  - Upstream Bisq update to version 1.9.15 - [click here for more info](https://github.com/bisq-network/bisq/releases/tag/v1.9.15)
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"
