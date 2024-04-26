@@ -31,19 +31,7 @@ cd bisq-startos
 To build the **Bisq** service as a universal package, run the following command:
 
 ```
-make
-```
-
-Alternatively the package can be built for individual architectures by specifying the architecture as follows:
-
-```
-# for amd64
 make x86
-```
-or
-```
-# for arm64
-make arm
 ```
 
 ## Installing (on StartOS)
