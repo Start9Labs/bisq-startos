@@ -34,18 +34,6 @@ To build the **Bisq** service as a universal package, run the following command:
 make
 ```
 
-Alternatively the package can be built for individual architectures by specifying the architecture as follows:
-
-```
-# for amd64
-make x86
-```
-or
-```
-# for arm64
-make arm
-```
-
 ## Installing (on StartOS)
 
 Before installation, define `host: https://server-name.local` in your `~/.embassy/config.yaml` config file then run the following commands to determine successful install:
