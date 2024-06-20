@@ -18,7 +18,7 @@ RUN apt update && \
 
 WORKDIR /opt
 
-ARG BISQ_VERSION=1.9.15
+ARG BISQ_VERSION=1.9.16
 ENV BISQ_DEBFILE Bisq-64bit-$BISQ_VERSION.deb
 ENV BISQ_DEB_URL https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE
 ENV BISQ_ASC_URL https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE.asc
