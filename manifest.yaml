@@ -1,9 +1,9 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.9.19
+version: 1.9.21
 release-notes: |
-  - Upstream Bisq update to version 1.9.19 - [click here for more info](https://github.com/bisq-network/bisq/releases/tag/v1.9.19)
+  - Upstream Bisq update to version 1.9.21 - [click here for more info](https://github.com/bisq-network/bisq/releases/tag/v1.9.21)
 license: GPLv3
 wrapper-repo: "https://github.com/Start9Labs/bisq-startos"
 upstream-repo: "https://github.com/bisq-network/bisq"
