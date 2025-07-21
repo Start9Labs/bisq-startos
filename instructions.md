@@ -1,37 +1,30 @@
-# Bisq Instructions
+# Instructions for Bisq
 
-Welcome to Bisq on Webtop, your favourite desktop wallet in an Immutable Linux Desktop, running 24/7 on your Start9 server!
+Welcome to Bisq, a decentralized exchange that allows you to trade cryptocurrencies in a true sovereign way.
 
-## Initial Configuration
+## Why Run Bisq on a Server?
 
-The initial configuration of Bisq is straightforward. You have two options:
+Bisq is a client application, usually run on a laptop or desktop. In order for trades to complete, however, it is necessary for your computer to be online. This means if you enter a trade on your laptop, you cannot close your laptop until the trade completes; otherwise it might fail.
 
-1. **Go with the Defaults**: If you prefer simplicity, you can use the default settings for `Webtop title`, `Username` and `Password`. Simply click save and start the service.
+_By running Bisq on a server, which is online 24/7, you can enter a trade and go about your life!_
 
-2. **Customize Settings**: If you want to personalize your Webtop experience, you can customize the `Webtop title`, `Username` and `Password` to your liking. After making your changes, click save and start the service.
+## Username and Password
 
-Now your Bisq on Webtop is ready to be visited in your browser!
+The default username for Bisq is `webtop`, and you have the option to change the password in config at any time.
 
-## Important Notes
+## Using Bisq from a web browser (laptop/desktop only):
 
-1. Webtop is an Immutable Linux Desktop environment running in a container. Any changes outside the home directory will **NOT** be persisted and **lost** after a restart and/or update! The home directory (`/config`) is stored outside the container and will be persisted accross restarts and included in StartOS backups. Most applications (like Bisq and the File Manager) persist their settings in a file or directory in the /config directory, so users can customize the experience a little bit.
+1. Launch the Bisq App by clicking on the **LAUNCH UI** button within Bisq. This will open Bisq in your default web browser.
+2. After launching the Bisq App, you will be prompted to enter the username and associated password.
 
-2. Bisq stores users wallet files, settings and logs in the home directory (`/config/./`) so they will be available again after a restart or update. They are also included in StartOS backups.
+**Note:** Within the Bisq interface, you will find a black dot on the middle left part of the screen. This dot provides convenient features such as a Copy & Paste field, On-Screen Keyboard, File Manager, and Fullscreen buttons. **(During the login screen, the option to copy and paste is not available)**
 
-3. Webtop utilizes HTTPS Basic Authentication. When users connect for the first time, their browser will automatically prompt them to log in. Subsequent connections will not require re-entering login credentials, unless the credentials are no longer valid.
+## Important notes
 
-4. This version of Webtop is Debian Linux based. A default configuration for Bisq is installed if none exist in your user (/config) directory. By default it connects to the installed `electrs` instance.
+The first time you use Bisq, you will be prompted to read and agree to the user agreement. Please take the time to review it.
 
-5. You can run notepad, a file manager, terminal or start a second instance of Bisq by right clicking on the Desktop. Bisq runs in a maximized window, resize the Bisq window (double click on the title bar) to see the desktop. Right click to open the application launcher.
+It may take a few moments for Bisq to open as it connects to the Tor network and syncs with Bisq's peer-to-peer trading network. Please be patient while the synchronization process completes.
 
-6. Bisq on Webtop does not support camera's or usb devices. Which is something to remember when setting up wallets.
+Once Bisq is fully synced, you are all set to start trading! If you have any questions or need help, you can refer to the Bisq documentation at https://bisq.wiki/.
 
-## Control Panel
-
-By default, you can find the control panel on the left side of the Webtop interface. Webtop uses the KasmVNC client control panel, providing users with various options to control and interact with their session.
-
-For more information about the available settings and functionalities of the control panel, please read the official KasmVNC documentation: [KasmVNC Client Documentation](https://www.kasmweb.com/kasmvnc/docs/latest/clientside.html)
-
-## Good Luck!
-
-Enjoy your Bisq on Webtop experience and happy experimenting!
+Happy and safe trading!

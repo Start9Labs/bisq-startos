@@ -10,7 +10,7 @@ export const resetRpcAuth = sdk.Action.withoutInput(
   // metadata
   async ({ effects }) => {
     const conf = await store.read().const(effects)
-    const serverType = conf?..server.type
+    const serverType = conf?.bisq.server.type
 
     return {
       name: 'Create RPC Credentials',
@@ -25,14 +25,14 @@ export const resetRpcAuth = sdk.Action.withoutInput(
 
   // execution function
   async ({ effects }) => {
-    const username = '_' + generateRpcPassword(6)
+    const username = 'sparrow_' + generateRpcPassword(6)
     const password = generateRpcPassword()
 
     console.log('resetRpcAuth: username:', username)
 
     console.log('resetRpcAuth: merge username and password into store')
     await store.merge(effects, {
-      : {
+      bisq: {
         server: {
           user: username,
           password: password,

@@ -43,7 +43,7 @@ export const inputSpec = InputSpec.of({
       'Automatically reconnect when the connection to the desktop is lost or the browser tab has been idle for too long.',
     default: false,
   }),
-  : Value.object(
+  bisq: Value.object(
     {
       name: 'Bisq settings',
       description: 'Bisq settings',
@@ -80,11 +80,15 @@ export const inputSpec = InputSpec.of({
           disabled: disabled,
           variants: Variants.of({
             electrs: {
-              name: 'Electrs (recommended)' + (disabled.includes('electrs') ? ' (not installed)' : ''),
+              name:
+                'Electrs (recommended)' +
+                (disabled.includes('electrs') ? ' (not installed)' : ''),
               spec: InputSpec.of({}),
             },
             bitcoind: {
-              name: 'Local Bitcoin Node' + (disabled.includes('bitcoind') ? ' (not installed)' : ''),
+              name:
+                'Local Bitcoin Node' +
+                (disabled.includes('bitcoind') ? ' (not installed)' : ''),
               spec: InputSpec.of({}),
             },
             public: {
@@ -152,23 +156,20 @@ async function readSettings(effects: T.Effects): Promise<PartialInputSpec> {
     username: settings.username,
     password: settings.password,
     reconnect: settings.reconnect,
-    : {
-      managesettings: settings..managesettings,
+    bisq: {
+      managesettings: settings.bisq.managesettings,
       server: {
-        selection: settings..server.type,
+        selection: settings.bisq.server.type,
       },
       proxy: {
-        selection: settings..proxy.type,
+        selection: settings.bisq.proxy.type,
       },
     },
   }
 }
 
 async function writeSettings(effects: T.Effects, input: InputSpec) {
-  if (
-    input..managesettings &&
-    input..server.selection == 'public'
-  ) {
+  if (input.bisq.managesettings && input.bisq.server.selection == 'public') {
     console.log('using public electrum server')
 
     // @todo this does not work (request config action from config action)
@@ -179,18 +180,12 @@ async function writeSettings(effects: T.Effects, input: InputSpec) {
 
   await sdk.action.clearTask(effects, 'reset-rpc-auth')
 
-  if (
-    input..managesettings &&
-    input..server.selection == 'bitcoind'
-  ) {
+  if (input.bisq.managesettings && input.bisq.server.selection == 'bitcoind') {
     console.log('using bitcoind server')
 
     const currentConf = await store.read().once()
     // check if we need to request new credentials
-    if (
-      !currentConf?..server.user ||
-      !currentConf?..server.password
-    ) {
+    if (!currentConf?.bisq.server.user || !currentConf?.bisq.server.password) {
       console.log('resetting rpc credentials')
 
       await sdk.action.run({
@@ -210,13 +205,13 @@ async function writeSettings(effects: T.Effects, input: InputSpec) {
     username: input.username,
     password: input.password,
     reconnect: input.reconnect,
-    : {
-      managesettings: input..managesettings,
+    bisq: {
+      managesettings: input.bisq.managesettings,
       server: {
-        type: input..server.selection,
+        type: input.bisq.server.selection,
       },
       proxy: {
-        type: input..proxy.selection,
+        type: input.bisq.proxy.selection,
       },
     },
   })

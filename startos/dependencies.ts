@@ -4,12 +4,12 @@ import { sdk } from './sdk'
 export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
   const conf = await store.read().const(effects)
 
-  // no dependencies if we are not managing  settings
-  if (!conf?..managesettings) {
+  // no dependencies if we are not managing bisq settings
+  if (!conf?.bisq.managesettings) {
     return {}
   }
 
-  var serverType = conf..server.type
+  var serverType = conf.bisq.server.type
 
   if (serverType == 'electrs') {
     return {

@@ -6,7 +6,7 @@ const shape = object({
   username: string,
   password: string.optional(),
   reconnect: boolean.onMismatch(false),
-  : object({
+  bisq: object({
     managesettings: boolean,
     server: object({
       type: oneOf(
@@ -36,7 +36,7 @@ export const createDefaultStore = async (effects: T.Effects) => {
   if (conf) {
     console.log('Bisq config file already exists, clearing RPC credentials')
     await store.merge(effects, {
-      : {
+      bisq: {
         server: {
           user: '',
           password: '',
@@ -59,7 +59,7 @@ export const createDefaultStore = async (effects: T.Effects) => {
     title: 'Bisq on StartOS',
     username: 'webtop',
     reconnect: false,
-    : {
+    bisq: {
       managesettings: true,
       server: {
         type: serverType,

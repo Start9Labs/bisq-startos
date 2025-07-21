@@ -16,9 +16,9 @@ const shape = object({
   proxyServer: string,
 })
 
-export type BisqConfigType = typeof shape._TYPE
+export type SparrowConfigType = typeof shape._TYPE
 
-export const  = FileHelper.json(
+export const bisq = FileHelper.json(
   '/media/startos/volumes/userdir/.bisq/config',
   shape,
 )
