@@ -1,5 +1,8 @@
-bisq.s9pk
+*.s9pk
 .vscode/
 .DS_Store
 scripts/*.js
 docker-images
+node_modules
+javascript/*
+ncc-cache
