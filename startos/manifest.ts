@@ -1,9 +1,8 @@
 import { setupManifest } from '@start9labs/start-sdk'
 import { SDKImageInputSpec } from '@start9labs/start-sdk/base/lib/types/ManifestTypes'
 
-const SPARROW_VERSION = '2.2.3'
-const SPARROW_DEBVERSION = '2.2.3-1'
-const SPARROW_PGP_SIG = 'E94618334C674B40'
+const BISQ_VERSION = '1.9.21'
+const BISQ_PGP_KEY = 'B493319106CC3D1F252E19CBF806F422E222AA02' // signing key (Alejandro García)
 
 // the following allows us to build the service for x86 or arm64 specifically
 // use: 'make x86' or 'make arm' ('make' will build both)
@@ -13,9 +12,11 @@ const BUILD = process.env.BUILD || ''
 // the subcontainer (in main.ts), is this correct?
 
 const defaultBuildArgs = {
-  SPARROW_VERSION: SPARROW_VERSION,
-  SPARROW_DEBVERSION: SPARROW_DEBVERSION,
-  SPARROW_PGP_SIG: SPARROW_PGP_SIG,
+  BISQ_VERSION: BISQ_VERSION,
+  BISQ_DEBFILE: `Bisq-64bit-${BISQ_VERSION}.deb`,
+  BISQ_DEB_URL: `https://bisq.network/downloads/v${BISQ_VERSION}/Bisq-64bit-${BISQ_VERSION}.deb`,
+  BISQ_ASC_URL: `https://bisq.network/downloads/v${BISQ_VERSION}/Bisq-64bit-${BISQ_VERSION}.deb.asc`,
+  BISQ_PGP_KEY: BISQ_PGP_KEY,
 }
 
 const main_x64: SDKImageInputSpec = {

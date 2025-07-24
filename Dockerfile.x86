@@ -69,12 +69,12 @@ RUN \
 # Install Bisq
 WORKDIR /opt
 
-ARG BISQ_VERSION=1.9.21
-ENV BISQ_DEBFILE=Bisq-64bit-$BISQ_VERSION.deb
-ENV BISQ_DEB_URL=https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE
-ENV BISQ_ASC_URL=https://bisq.network/downloads/v$BISQ_VERSION/$BISQ_DEBFILE.asc
-# signing key (Alejandro García)
-ENV BISQ_PGP_KEY=B493319106CC3D1F252E19CBF806F422E222AA02
+# Use the build arguments passed from the startos/manifest.ts
+ARG BISQ_VERSION
+ARG BISQ_DEBFILE
+ARG BISQ_DEB_URL
+ARG BISQ_ASC_URL
+ARG BISQ_PGP_KEY
 
 RUN mkdir bisq-install && cd bisq-install; \
   wget -qO $BISQ_DEBFILE "$BISQ_DEB_URL"; \
