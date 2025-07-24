@@ -58,33 +58,22 @@ export const inputSpec = InputSpec.of({
       server: Value.dynamicUnion(async ({ effects }) => {
         // determine default server type and disabled options
         const installedPackages = await effects.getInstalledPackages()
-        let serverType: 'electrs' | 'bitcoind' | 'public' = 'public'
+        let serverType: 'bitcoind' | 'public' = 'public'
         let disabled: string[] = []
 
         if (installedPackages.includes('bitcoind')) {
           serverType = 'bitcoind'
+          disabled.push('public')
         } else {
           disabled.push('bitcoind')
         }
 
-        if (installedPackages.includes('electrs')) {
-          serverType = 'electrs'
-        } else {
-          disabled.push('electrs')
-        }
-
         return {
           name: 'Server',
-          description: 'Bitcoin/Electrum Server',
+          description: 'Bitcoin Node',
           default: serverType,
           disabled: disabled,
           variants: Variants.of({
-            electrs: {
-              name:
-                'Electrs (recommended)' +
-                (disabled.includes('electrs') ? ' (not installed)' : ''),
-              spec: InputSpec.of({}),
-            },
             bitcoind: {
               name:
                 'Local Bitcoin Node' +
@@ -169,15 +158,6 @@ async function readSettings(effects: T.Effects): Promise<PartialInputSpec> {
 }
 
 async function writeSettings(effects: T.Effects, input: InputSpec) {
-  if (input.bisq.managesettings && input.bisq.server.selection == 'public') {
-    console.log('using public electrum server')
-
-    // @todo this does not work (request config action from config action)
-    // await sdk.action.requestOwn(effects, config, 'important', {
-    //   reason: 'Change settings to not use a public electrum server',
-    // })
-  }
-
   await sdk.action.clearTask(effects, 'reset-rpc-auth')
 
   if (input.bisq.managesettings && input.bisq.server.selection == 'bitcoind') {

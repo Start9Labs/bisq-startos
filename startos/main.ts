@@ -1,7 +1,6 @@
 import os from 'os'
 import * as fs from 'node:fs/promises'
 import { sdk } from './sdk'
-import { T, utils } from '@start9labs/start-sdk'
 import { canConnectToRpc, uiPort } from './utils'
 import { store } from './fileModels/store.yaml'
 import { bisq } from './fileModels/bisq.json'
@@ -34,24 +33,6 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
       readonly: false,
     })
 
-  /*
-  // mount the bitcoin data directory if we are using bitcoind
-  // @todo: mount only the .cookie file (could not get this to work)
-  if (conf.bisq.managesettings && conf.bisq.server.type == 'bitcoind') {
-    mounts = mounts.mountDependency({
-      dependencyId: 'bitcoind',
-      volumeId: 'main',
-      //subpath: '.cookie',
-      //mountpoint: '/mnt/bitcoind/.cookie',
-      //type: 'file',
-      subpath: null,
-      mountpoint: '/mnt/bitcoind',
-      // @todo: this should be readonly, but we need to change its permissions
-      readonly: false,
-    })
-  }
-  */
-
   // main subcontainer (the webtop container)
   // @todo: review this (should the service do this or can the sdk be smarter?)
   const imageId = os.arch() == 'x64' ? 'main' : 'main-aarch'
@@ -65,39 +46,12 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
   )
 
   /*
-  // Detect when the bitcoind cookie changes and report it as a health check failure
-  // We do this instead of automatically restarting the service.
-  let cookieChanged = false
-  if (conf.bisq.managesettings && conf.bisq.server.type == 'bitcoind') {
-    let currentCookie = await FileHelper.string(
-      `${subcontainer.rootfs}/mnt/bitcoind/.cookie`,
-    )
-      .read()
-      .once()
-
-    FileHelper.string(`${subcontainer.rootfs}/mnt/bitcoind/.cookie`)
-      .read()
-      .onChange(effects, async (value) => {
-        if (currentCookie != value) {
-          console.log('Bitcoin Cookie changed')
-
-          cookieChanged = true
-          // request the user to restart the service
-          sdk.action.requestOwn(effects, restartService, 'important', {
-            reason: 'Bitcoin Cookie changed, please restart the service',
-          })
-        }
-      })
-  }
-  */
-
-  /*
    * Bisq settings
    */
   if (conf.bisq.managesettings) {
     let config = {}
 
-    // server config
+    // bitcoind conf
     if (conf.bisq.server.type == 'bitcoind') {
       config = {
         ...config,
@@ -106,17 +60,6 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
         coreServer: 'http://127.0.0.1:8332',
         coreAuthType: 'USERPASS',
         coreAuth: conf.bisq.server.user + ':' + conf.bisq.server.password,
-      }
-    } else if (conf.bisq.server.type == 'electrs') {
-      config = {
-        ...config,
-        serverType: 'ELECTRUM_SERVER',
-        coreServer: 'tcp://127.0.0.1:50001',
-      }
-    } else if (conf.bisq.server.type == 'public') {
-      config = {
-        ...config,
-        serverType: 'PUBLIC_ELECTRUM_SERVER',
       }
     }
 
@@ -217,22 +160,9 @@ export const main = sdk.setupMain(async ({ effects, started }) => {
               result: 'success',
             }
           }
-
-          if (conf.bisq.server.type == 'electrs') {
-            // @todo: check if we can connect to the local electrum server
-            return {
-              message: 'Using local electrum server',
-              result: 'success',
-            }
-          }
-
-          sdk.action.createOwnTask(effects, config, 'important', {
-            reason: 'Change settings to not use a public electrum server',
-          })
-
           return {
-            message: 'Using a public electrum server',
-            result: 'failure',
+            message: 'Using configured Bitcoin node',
+            result: 'success',
           }
         },
       },

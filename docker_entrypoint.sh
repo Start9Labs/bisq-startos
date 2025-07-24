@@ -15,8 +15,7 @@ sed -i '/<script src="public\/js\/pcm-player\.js"><\/script>/d' /kclient/public/
 sed -i "s/\(index\.html?autoconnect=1\)/&\&reconnect=$RECONNECT/" /kclient/public/index.html
 
 # setup a proxy on localhost, Bisq will not use Tor for local addresses
-# this means we can connect straight to bitcoind/electrs and use Tor for everything else (whirlpool)
-/usr/bin/socat tcp-l:8332,fork,reuseaddr,su=nobody,bind=127.0.0.1 tcp:bitcoind.startos:8332 &
-/usr/bin/socat tcp-l:50001,fork,reuseaddr,su=nobody,bind=127.0.0.1 tcp:electrs.startos:50001 &
+# this means we can connect straight to bitcoind and use Tor for everything else (whirlpool)
+/usr/bin/socat tcp-l:8332,fork,reuseaddr,su=nobody,bind=127.0.0.1 tcp:bitcoind.startos:8332
 
 exec /init

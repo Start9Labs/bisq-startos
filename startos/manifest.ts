@@ -30,6 +30,7 @@ const main_x64: SDKImageInputSpec = {
       },
     },
   },
+  emulateMissingAs: null,
 }
 
 const main_aarch64: SDKImageInputSpec = {
@@ -44,6 +45,7 @@ const main_aarch64: SDKImageInputSpec = {
       },
     },
   },
+  emulateMissingAs: null,
 }
 
 // @todo name of images cannot contain capital letters, underscores, numbers?
@@ -85,11 +87,6 @@ export const manifest = setupManifest({
   },
   dependencies: {
     bitcoind: {
-      description: 'Used to connect to your Bitcoin node.',
-      optional: true,
-      s9pk: null,
-    },
-    electrs: {
       description: 'Used to connect to your Bitcoin node.',
       optional: true,
       s9pk: null,

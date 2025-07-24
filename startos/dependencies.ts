@@ -11,16 +11,6 @@ export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
 
   var serverType = conf.bisq.server.type
 
-  if (serverType == 'electrs') {
-    return {
-      electrs: {
-        kind: 'exists',
-        // @todo update version range
-        versionRange: '>=0.10.9:1-alpha.1',
-      },
-    }
-  }
-
   if (serverType == 'bitcoind') {
     return {
       bitcoind: {

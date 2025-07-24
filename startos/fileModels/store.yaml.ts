@@ -9,11 +9,9 @@ const shape = object({
   bisq: object({
     managesettings: boolean,
     server: object({
-      type: oneOf(
-        literal('electrs'),
-        literal('bitcoind'),
-        literal('public'),
-      ).onMismatch('electrs'),
+      type: oneOf(literal('bitcoind'), literal('public')).onMismatch(
+        'bitcoind',
+      ),
       user: string,
       password: string,
     }),
@@ -49,11 +47,9 @@ export const createDefaultStore = async (effects: T.Effects) => {
   // config file does not exist, create it
   console.log('Bisq config file does not exist, creating it')
   const installedPackages = await effects.getInstalledPackages()
-  const serverType = installedPackages.includes('electrs')
-    ? 'electrs'
-    : installedPackages.includes('bitcoind')
-      ? 'bitcoind'
-      : 'public'
+  const serverType = installedPackages.includes('bitcoind')
+    ? 'bitcoind'
+    : 'public'
 
   await store.write(effects, {
     title: 'Bisq on StartOS',
