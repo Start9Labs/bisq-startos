@@ -25,7 +25,7 @@ export const resetRpcAuth = sdk.Action.withoutInput(
 
   // execution function
   async ({ effects }) => {
-    const username = 'sparrow_' + generateRpcPassword(6)
+    const username = 'bisq_' + generateRpcPassword(6)
     const password = generateRpcPassword()
 
     console.log('resetRpcAuth: username:', username)

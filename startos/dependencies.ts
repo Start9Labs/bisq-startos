@@ -1,25 +1,42 @@
 import { store } from './fileModels/store.yaml'
 import { sdk } from './sdk'
+import { config as bitcoinConfigAction } from 'bitcoind-startos/startos/actions/config/other'
 
 export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
   const conf = await store.read().const(effects)
 
-  // no dependencies if we are not managing bisq settings
+  // Only check dependencies if managing Bisq settings and using bitcoind
   if (!conf?.bisq.managesettings) {
     return {}
   }
 
-  var serverType = conf.bisq.server.type
-
-  if (serverType == 'bitcoind') {
-    return {
-      bitcoind: {
-        kind: 'exists',
-        // @todo update version range
-        versionRange: '>=28.1:3-alpha.4',
+  // Create configuration task for Bitcoin
+  await sdk.action.createTask(
+    effects,
+    'bitcoin',
+    bitcoinConfigAction,
+    'critical',
+    {
+      input: {
+        kind: 'partial',
+        value: {
+          peerbloomfilters: true,
+        },
       },
-    }
-  }
+      reason:
+        'Bisq requires Bitcoin with bloom filters enabled for SPV wallet functionality',
+      when: { condition: 'input-not-matches', once: false },
+      replayId: 'enable-peerbloomfilters',
+    },
+  )
 
-  return {}
+  // Return Bitcoin dependency requirements
+  return {
+    bitcoin: {
+      kind: 'exists',
+      versionRange: '>=28.1:3-alpha.7',
+      healthChecks: ['sync-progress', 'primary'],
+      description: 'Local Bitcoin node for Bisq transactions',
+    },
+  }
 })
