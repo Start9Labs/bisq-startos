@@ -74,11 +74,11 @@ ARG BISQ_VERSION
 ARG BISQ_DEBFILE
 ARG BISQ_DEB_URL
 ARG BISQ_ASC_URL
-ARG BISQ_PGP_KEY
+ARG BISQ_PGP_PUB
 
 RUN mkdir bisq-install && cd bisq-install; \
   wget -qO $BISQ_DEBFILE "$BISQ_DEB_URL"; \
-  gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$BISQ_PGP_KEY"; \
+  gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$BISQ_PGP_PUB"; \
   wget -qO "$BISQ_DEBFILE".asc "$BISQ_ASC_URL"; \
   gpg --digest-algo SHA256 --verify "$BISQ_DEBFILE".asc; \
   cd .. || echo "WARNING: Bisq Installation Failed."

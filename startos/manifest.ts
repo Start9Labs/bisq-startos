@@ -2,7 +2,8 @@ import { setupManifest } from '@start9labs/start-sdk'
 import { SDKImageInputSpec } from '@start9labs/start-sdk/base/lib/types/ManifestTypes'
 
 const BISQ_VERSION = '1.9.21'
-const BISQ_PGP_KEY = 'B493319106CC3D1F252E19CBF806F422E222AA02' // signing key (Alejandro García)
+const BISQ_URL = `https://bisq.network/downloads/v${BISQ_VERSION}/Bisq-64bit-${BISQ_VERSION}.deb`
+const BISQ_PGP_PUB = 'B493319106CC3D1F252E19CBF806F422E222AA02' // signing key (Alejandro García)
 
 // the following allows us to build the service for x86 or arm64 specifically
 // use: 'make x86' or 'make arm' ('make' will build both)
@@ -12,11 +13,11 @@ const BUILD = process.env.BUILD || ''
 // the subcontainer (in main.ts), is this correct?
 
 const defaultBuildArgs = {
-  BISQ_VERSION: BISQ_VERSION,
+  BISQ_VERSION,
   BISQ_DEBFILE: `Bisq-64bit-${BISQ_VERSION}.deb`,
-  BISQ_DEB_URL: `https://bisq.network/downloads/v${BISQ_VERSION}/Bisq-64bit-${BISQ_VERSION}.deb`,
-  BISQ_ASC_URL: `https://bisq.network/downloads/v${BISQ_VERSION}/Bisq-64bit-${BISQ_VERSION}.deb.asc`,
-  BISQ_PGP_KEY: BISQ_PGP_KEY,
+  BISQ_DEB_URL: `${BISQ_URL}`,
+  BISQ_ASC_URL: `${BISQ_URL}.asc`,
+  BISQ_PGP_PUB,
 }
 
 const main_x64: SDKImageInputSpec = {
@@ -90,7 +91,7 @@ export const manifest = setupManifest({
     bitcoind: {
       description: 'Used to connect to your Bitcoin node.',
       optional: true,
-      s9pk: null,
+      s9pk: 'https://github.com/Start9Labs/bitcoind-startos/releases/download/v28.1.0.3-alpha.7/bitcoind.s9pk',
     },
   },
 })

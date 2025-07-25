@@ -1,42 +1,42 @@
 # taken from https://github.com/linuxserver/docker-baseimage-kasmvnc/blob/debianbookworm/Dockerfile.aarch64
 # modified to apply 'novnc.patch' (fixing a disconnect/reconnect issue)
-FROM node:12-buster AS wwwstage
+# FROM node:12-buster AS wwwstage
 
-ARG KASMWEB_RELEASE="46412d23aff1f45dffa83fafb04a683282c8db58"
+# ARG KASMWEB_RELEASE="46412d23aff1f45dffa83fafb04a683282c8db58"
 
-RUN \
-  echo "**** install build deps ****" && \
-  apt-get update && \
-  apt-get install -y phantomjs
+# RUN \
+#   echo "**** install build deps ****" && \
+#   apt-get update && \
+#   apt-get install -y phantomjs
 
-RUN \
-  echo "**** build clientside ****" && \
-  mkdir /src && \
-  cd /src && \
-  wget https://github.com/kasmtech/noVNC/tarball/${KASMWEB_RELEASE} -O - \
-  | tar  --strip-components=1 -xz
+# RUN \
+#   echo "**** build clientside ****" && \
+#   mkdir /src && \
+#   cd /src && \
+#   wget https://github.com/kasmtech/noVNC/tarball/${KASMWEB_RELEASE} -O - \
+#   | tar  --strip-components=1 -xz
 
-COPY ./patches/novnc.patch /src/
-RUN \
-  export QT_QPA_PLATFORM=offscreen && \
-  export QT_QPA_FONTDIR=/usr/share/fonts && \
-  echo "apply novnc.patch" && \
-  cd /src && \
-  patch -p1 -i novnc.patch && \
-  npm install && \
-  npm run-script build
+# COPY ./patches/novnc.patch /src/
+# RUN \
+#   export QT_QPA_PLATFORM=offscreen && \
+#   export QT_QPA_FONTDIR=/usr/share/fonts && \
+#   echo "apply novnc.patch" && \
+#   cd /src && \
+#   patch -p1 -i novnc.patch && \
+#   npm install && \
+#   npm run-script build
 
-RUN \
-  echo "**** organize output ****" && \
-  mkdir /build-out && \
-  cd /src && \
-  rm -rf node_modules/ && \
-  cp -R ./* /build-out/ && \
-  cd /build-out && \
-  rm *.md && \
-  rm AUTHORS && \
-  cp index.html vnc.html && \
-  mkdir Downloads
+# RUN \
+#   echo "**** organize output ****" && \
+#   mkdir /build-out && \
+#   cd /src && \
+#   rm -rf node_modules/ && \
+#   cp -R ./* /build-out/ && \
+#   cd /build-out && \
+#   rm *.md && \
+#   rm AUTHORS && \
+#   cp index.html vnc.html && \
+#   mkdir Downloads
 
 FROM ghcr.io/linuxserver/baseimage-kasmvnc:arm64v8-debianbookworm-9d98b2d5-ls120 AS buildstage
 
@@ -57,7 +57,7 @@ WORKDIR /opt
 ###
 
 ## Start Bisq build from sources
-ARG BISQ_VERSION=1.9.21
+ARG BISQ_VERSION
 ARG JAVA_VERSION=17
 ARG TARGETPLATFORM
 
@@ -190,7 +190,7 @@ RUN \
 FROM scratch
 
 COPY --from=buildstage / .
-COPY --from=wwwstage /build-out /usr/local/share/kasmvnc/www
+# COPY --from=wwwstage /build-out /usr/local/share/kasmvnc/www
 
 # since we start from scratch, we need these env variables from the base images
 ENV \
