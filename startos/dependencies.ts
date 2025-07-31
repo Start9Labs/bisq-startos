@@ -1,14 +1,13 @@
-import { store } from './fileModels/store.yaml'
+import { storeJson } from './fileModels/store.json'
 import { sdk } from './sdk'
 import { config as bitcoinConfigAction } from 'bitcoind-startos/startos/actions/config/other'
 
 export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
-  const conf = await store.read().const(effects)
+  const wantsBitcoin = await storeJson
+    .read((s) => s.bitcoinNode === 'local')
+    .const(effects)
 
-  // Only check dependencies if managing Bisq settings and using bitcoind
-  if (!conf?.bisq.managesettings) {
-    return {}
-  }
+  if (!wantsBitcoin) return {}
 
   // Create configuration task for Bitcoin
   await sdk.action.createTask(
@@ -32,8 +31,8 @@ export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
 
   // Return Bitcoin dependency requirements
   return {
-    bitcoin: {
-      kind: 'exists',
+    bitcoind: {
+      kind: 'running',
       versionRange: '>=28.1:3-alpha.7',
       healthChecks: ['sync-progress', 'primary'],
       description: 'Local Bitcoin node for Bisq transactions',

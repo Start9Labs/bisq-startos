@@ -1,11 +1,9 @@
 import { sdk } from '../sdk'
-import { config } from './config'
-import { resetRpcAuth } from './resetRpcAuth'
-import { restartService } from './restartService'
-import { uiCredentials } from './uiCredentials'
+import { resetWebtopPass } from './resetWebtopPass'
+import { setBitcoin } from './setBitcoin'
+import { webtop } from './webtop'
 
 export const actions = sdk.Actions.of()
-  .addAction(config)
-  .addAction(resetRpcAuth)
-  .addAction(restartService)
-  .addAction(uiCredentials)
+  .addAction(setBitcoin)
+  .addAction(webtop)
+  .addAction(resetWebtopPass)

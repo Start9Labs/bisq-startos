@@ -1,11 +1,12 @@
 import { VersionGraph } from '@start9labs/start-sdk'
 import { current, other } from './versions'
-import { createDefaultStore } from '../fileModels/store.yaml'
+import { storeJson } from '../fileModels/store.json'
+import { storeDefaults } from '../utils'
 
 export const versionGraph = VersionGraph.of({
   current,
   other,
   preInstall: async (effects) => {
-    await createDefaultStore(effects)
+    await storeJson.write(effects, storeDefaults)
   },
 })
