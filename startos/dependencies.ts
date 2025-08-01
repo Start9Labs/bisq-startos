@@ -33,7 +33,7 @@ export const setDependencies = sdk.setupDependencies(async ({ effects }) => {
   return {
     bitcoind: {
       kind: 'running',
-      versionRange: '>=28.1:3-alpha.7',
+      versionRange: '>=28.1:3-alpha.8',
       healthChecks: ['sync-progress', 'primary'],
       description: 'Local Bitcoin node for Bisq transactions',
     },
