@@ -71,7 +71,7 @@ properties:
   type: script
 dependencies:
   bitcoind:
-    version: ">=0.21.1.2 <29.0.0"
+    version: ">=0.21.1.2 <31.0.0"
     requirement:
       type: "opt-out"
       how: Internal bitcoind is used by default. Alternatively, Bisq's default list of nodes can be used.
