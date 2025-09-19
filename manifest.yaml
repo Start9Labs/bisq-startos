@@ -1,7 +1,7 @@
 
 id: bisq 
 title: "Bisq"
-version: 1.9.21~1
+version: 1.9.21.1
 release-notes: |
   - Fixed Bitcoin version range
 license: GPLv3
